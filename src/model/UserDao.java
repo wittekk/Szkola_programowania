@@ -69,7 +69,7 @@ public class UserDao {
 		}
 		return getUsersFromStatement(stmt);
 	}
-	public static ArrayList<User> loadAllUsers(){
+	public ArrayList<User> loadAllUsers(){
 		String sql = "SELECT * FROM users"; 
 		PreparedStatement stmt = DbManager.getPreparedStatement(sql); 
 		return getUsersFromStatement(stmt);

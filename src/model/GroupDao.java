@@ -50,7 +50,7 @@ public class GroupDao {
 			System.err.println(e.getMessage());
 		}
 	}	
-	public static ArrayList<Group> loadAllGroups(){
+	public ArrayList<Group> loadAllGroups(){
 		try {
 			ArrayList<Group> groups = new ArrayList<Group>();
 			String sql = "SELECT * FROM user_group";

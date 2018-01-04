@@ -15,9 +15,9 @@ public class User {
 	
 	public User(String username, String email, String password, int person_group_id){
 		this.id = 0;
-		setUsername(username).
-		setEmail(email).
-		setPassword(password).
+		setUsername(username);
+		setEmail(email);
+		setPassword(password);
 		setPersonGroupId(person_group_id);
 	}
 	public long getId() {
