@@ -10,16 +10,17 @@ import sql.DbManager;
 
 public class SolutionDao {	
 	// non-static DB methods
-	public void saveToDB(Solution solution){
+	public static void saveToDB(Solution solution){
 		if(solution.getId()==0){
 			try {
+				
 				String generatedColumns[] = { "ID" };
 				PreparedStatement stmt = DbManager.getPreparedStatement("INSERT INTO solution(created,updated,"
-						+ "description,excercise_id, users_id) VALUES (?,?,?,?,?)",generatedColumns);
+						+ "description,exercise_id, users_id) VALUES (?,?,?,?,?)",generatedColumns);
 				stmt.setDate(1, (java.sql.Date) solution.getCreated()); 
 				stmt.setDate(2, (java.sql.Date) solution.getUpdated());
 				stmt.setString(3, solution.getDescription());
-				stmt.setInt(4, solution.getExcercise_id());
+				stmt.setInt(4, solution.getExercise_id());
 				stmt.setLong(5, solution.getUsers_id());
 				stmt.executeUpdate();
 				ResultSet rs = stmt.getGeneratedKeys(); 
@@ -33,11 +34,11 @@ public class SolutionDao {
 		}else{
 			try{
 				PreparedStatement stmt = DbManager.getPreparedStatement("UPDATE solution SET"
-						+ " created=?,updated=?,description=?,excercise_id=?, users_id=? WHERE id=?");
+						+ " created=?,updated=?,description=?,exercise_id=?, users_id=? WHERE id=?");
 				stmt.setDate(1, (java.sql.Date) solution.getCreated()); 
 				stmt.setDate(2, (java.sql.Date) solution.getUpdated());
 				stmt.setString(3, solution.getDescription());
-				stmt.setInt(4, solution.getExcercise_id());
+				stmt.setInt(4, solution.getExercise_id());
 				stmt.setLong(5, solution.getUsers_id());
 				stmt.setInt(6, solution.getId());
 				stmt.executeUpdate();
@@ -58,17 +59,28 @@ public class SolutionDao {
 		}
 	}
 	// static DB methods
-	public static ArrayList<Solution> loadAllByExerciseId(int excerciseId){
+	public static ArrayList<Solution> loadAllByExerciseId(int exerciseId){
 		try{
-			String sql = "SELECT * FROM solution WHERE excercise_id = ?"; 
+			String sql = "SELECT * FROM solution WHERE exercise_id = ?"; 
 			PreparedStatement stmt = DbManager.getPreparedStatement(sql);
-			stmt.setInt(1, excerciseId);
+			stmt.setInt(1, exerciseId);
 			return getSolutionsFromStatement(stmt);
 		}catch(SQLException e){
 			System.err.println(e.getMessage());
 		}	
 		return null;
-	}	
+	}
+	public static ArrayList<Solution> loadAllByUserId(int userId){
+		try{
+			String sql = "SELECT * FROM solution WHERE users_id = ?"; 
+			PreparedStatement stmt = DbManager.getPreparedStatement(sql);
+			stmt.setInt(1, userId);
+			return getSolutionsFromStatement(stmt);
+		}catch(SQLException e){
+			System.err.println(e.getMessage());
+		}	
+		return null;
+	}
 	public static ArrayList<Solution> loadById(int id){
 		try { 
 			String sql = "SELECT * FROM solution where id=?";
@@ -95,7 +107,7 @@ public class SolutionDao {
 				loadedSolution.setCreated(resultSet.getDate("created")); 
 				loadedSolution.setUpdated(resultSet.getDate("updated"));   
 				loadedSolution.setDescription(resultSet.getString("description"));
-				loadedSolution.setExcercise_id(resultSet.getInt("excercise_id"));
+				loadedSolution.setExercise_id(resultSet.getInt("exercise_id"));
 				loadedSolution.setUsers_id(resultSet.getInt("users_id"));
 				solutions.add(loadedSolution);
 			}

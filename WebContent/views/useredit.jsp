@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Useredit</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 		<b>Group: </b>
 	</div>
 	<div class="formdiv">
-		<form method="POST" action='./edituser'>			 
+		<form method="POST" action='./useredit'>			 
 			<input name="username" type="TEXT" placeholder="new username"
 				onfocus="this.placeholder=''; this.value='${usertoedit.username}'" onblur="this.placeholder='new username'" /></br>
 			<input name="email" type="TEXT" value="" placeholder="new email"

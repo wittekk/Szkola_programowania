@@ -17,9 +17,14 @@
 			onfocus="this.placeholder=''" onblur="this.placeholder='email'" /></br>
 		<input name="password" type="PASSWORD" placeholder="password"
 			onfocus="this.placeholder=''" onblur="this.placeholder='password'" /></br>
-		<input name="person_group_id" type="TEXT" placeholder="group id"
-			onfocus="this.placeholder=''" onblur="this.placeholder='group id'" /></br>
+		
+		Wybierz grupę do której przydzielić usera: <select required id="gruopId" name="groupIdjsp">
+       		<c:forEach items="${groupsAll}" var="groupx">
+       			<option value="${groupx.id}">${groupx.name}</option>
+       		</c:forEach>
+		</select>
 		<input type="SUBMIT" value="Add"/>
+
 	</form>
 	<h3>Dostępne grupy:</h3>
 	<table>

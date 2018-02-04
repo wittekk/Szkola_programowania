@@ -30,6 +30,7 @@ public class GroupDao {
 				PreparedStatement stmt = DbManager.getPreparedStatement("UPDATE user_group SET name= ? WHERE id= ?");
 				stmt.setString(1, group.getName());
 				stmt.setInt(2, group.getId());
+				System.out.println(stmt);
 				stmt.executeUpdate();				
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());

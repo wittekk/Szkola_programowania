@@ -8,16 +8,16 @@ public class Solution {
 	private Date created;
 	private Date updated;
 	private String description;
-	private int excercise_id;
-	private long users_id;
+	private int exercise_id;
+	private int users_id;
 
 	public Solution(){}
 
-	public Solution(Date created, Date updated, String description, int excercise_id, long users_id){		
+	public Solution(Date created, Date updated, String description, int exercise_id, int users_id){		
 		setCreated(created);
 		setUpdated(updated);
 		setDescription(description);
-		setExcercise_id(excercise_id);
+		setExercise_id(exercise_id);
 		setUsers_id(users_id);
 	}
 	public void setId(int id) {
@@ -44,21 +44,21 @@ public class Solution {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getExcercise_id() {
-		return excercise_id;
+	public int getExercise_id() {
+		return exercise_id;
 	}
-	public void setExcercise_id(int excercise_id) {
-		this.excercise_id = excercise_id;
+	public void setExercise_id(int exercise_id) {
+		this.exercise_id = exercise_id;
 	}
-	public long getUsers_id() {
+	public int getUsers_id() {
 		return users_id;
 	}
-	public void setUsers_id(long users_id) {
+	public void setUsers_id(int users_id) {
 		this.users_id = users_id;
 	}
 	@Override
 	public String toString() {
 		return "Solution [id=" + id + ", created=" + created + ", updated=" + updated + ", description=" + description
-				+ ", excercise_id=" + excercise_id + ", users_id=" + users_id + "]";
+				+ ", exercise_id=" + exercise_id + ", users_id=" + users_id + "]";
 	}
 }

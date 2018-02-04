@@ -18,7 +18,7 @@ public class User {
 		setUsername(username);
 		setEmail(email);
 		setPassword(password);
-		setPersonGroupId(person_group_id);
+		setPerson_group_id(person_group_id);
 	}
 	public long getId() {
 		return id;
@@ -47,16 +47,19 @@ public class User {
 		this.salt = BCrypt.gensalt();
 		this.password = BCrypt.hashpw(password, salt);
 		return this;
-	}	
-	public User setPersonGroupId(int id){
+	}
+	public String getSalt() {
+		return salt;
+	}
+	public User setPerson_group_id(int id){
 		this.person_group_id = id;
 		return this;
 	}
-	public int getPersonGroupId(){
+	public int getPerson_group_id(){
 		return this.person_group_id;
 	}
 	@Override
 	public String toString(){
 		return "id: "+this.id+" username: "+this.username+" email:"+this.email+" password:" + this.password;
-	}		
+	}			
 }

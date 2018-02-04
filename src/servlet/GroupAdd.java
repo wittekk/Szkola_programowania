@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Group;
 import model.GroupDao;
-import model.User;
-import model.UserDao;
 
-@WebServlet("/useradd")
-public class UserAdd extends HttpServlet {
+
+@WebServlet("/groupadd")
+public class GroupAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -22,21 +22,16 @@ public class UserAdd extends HttpServlet {
 		GroupDao gDao  = new GroupDao();
 		request.setAttribute("groupsAll", gDao.loadAllGroups());
 		
-		getServletContext().getRequestDispatcher("/views/useradd.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/views/groupadd.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String username = request.getParameter("username");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		int person_group_id = Integer.parseInt(request.getParameter("groupIdjsp"));		
-
-		User newUser  = new User(username, email, password, person_group_id);		
-		UserDao.saveToDB(newUser);
+		String name = request.getParameter("name");
+		Group newGroup  = new Group(name);		
+		GroupDao.saveToDB(newGroup);
 
 		response.sendRedirect(request.getContextPath()+"/adminpanel"); 
 	}
-
 }

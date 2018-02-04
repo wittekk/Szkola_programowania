@@ -19,7 +19,7 @@ public class UserDao {
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getEmail());
 				stmt.setString(3, user.getPassword());				
-				stmt.setInt(4, user.getPersonGroupId());
+				stmt.setInt(4, user.getPerson_group_id());
 				stmt.executeUpdate();
 				ResultSet rs = stmt.getGeneratedKeys(); 
 				if (rs.next()) {
@@ -34,7 +34,7 @@ public class UserDao {
 						+ "SET username=?, email=?, person_group_id=?, password=? WHERE id=?");
 				stmt.setString(1, user.getUsername());
 				stmt.setString(2, user.getEmail());
-				stmt.setInt(3, user.getPersonGroupId());
+				stmt.setInt(3, user.getPerson_group_id());
 				stmt.setString(4, user.getPassword());				
 				stmt.setLong(5, user.getId());
 				stmt.executeUpdate();
@@ -58,9 +58,7 @@ public class UserDao {
 	}
 	// static DB methods
 	public static ArrayList<User> loadAllByGroupId(int groupId){
-		String sql = "SELECT * FROM users "
-				+ "JOIN user_group ON users.person_group_id = user_group.id "
-				+ "WHERE user_group.id = ?";
+		String sql = "SELECT * FROM users WHERE person_group_id = ?";
 		PreparedStatement stmt = DbManager.getPreparedStatement(sql);
 		try {
 			stmt.setInt(1, groupId);
@@ -88,9 +86,9 @@ public class UserDao {
 				loadedUser.setUsername(resultSet.getString("username")); 
 				loadedUser.setPassword(resultSet.getString("password")); 
 				loadedUser.setEmail(resultSet.getString("email"));				
-				loadedUser.setPersonGroupId(resultSet.getInt("person_group_id"));
+				loadedUser.setPerson_group_id(resultSet.getInt("person_group_id"));
 				users.add(loadedUser);
-			}
+			}			
 			return users;
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -109,10 +107,9 @@ public class UserDao {
 				loadedUser.setUsername(resultSet.getString("username")); 
 				loadedUser.setPassword(resultSet.getString("password")); 
 				loadedUser.setEmail(resultSet.getString("email"));				
-				loadedUser.setPersonGroupId(resultSet.getInt("person_group_id"));
+				loadedUser.setPerson_group_id(resultSet.getInt("person_group_id"));
 				return loadedUser;
-			}
-			
+			}			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		} 		

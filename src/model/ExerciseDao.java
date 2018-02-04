@@ -44,7 +44,7 @@ public class ExerciseDao {
 	}
 
 	public static void delete(Exercise exercise) {
-		String sql = "DELETE FROM excercise WHERE id= ?";
+		String sql = "DELETE FROM exercise WHERE id= ?";
 		try {
 			if (exercise.getId() != 0) {
 				PreparedStatement stmt = DbManager.getPreparedStatement(sql);
@@ -71,7 +71,7 @@ public class ExerciseDao {
 		return null;
 	}
 
-	public static ArrayList<Exercise> loadAll() {
+	public ArrayList<Exercise> loadAll() {
 		String sql = "SELECT * FROM exercise";
 		PreparedStatement stmt = DbManager.getPreparedStatement(sql);
 		return getExerciseFromStatement(stmt);
@@ -95,9 +95,9 @@ public class ExerciseDao {
 		return null;
 	}
 
-	public static Exercise loadExcerciseById(int id) {
+	public static Exercise loadExerciseById(int id) {
 		try {
-			String sql = "SELECT * FROM excercise where id=?";
+			String sql = "SELECT * FROM exercise where id=?";
 			PreparedStatement stmt = DbManager.getPreparedStatement(sql);
 			stmt.setInt(1, id);
 			ResultSet resultSet = stmt.executeQuery();

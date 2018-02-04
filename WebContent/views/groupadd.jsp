@@ -5,14 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Groups</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-<%@ include file="header.jsp"%>
-
-<h1>Grupy Witka</h1>
-
+	<form method="POST" action='./groupadd'>		
+		<input name="name" type="TEXT" placeholder="name"
+			onfocus="this.placeholder=''" onblur="this.placeholder='name'" /></br>
+		<input type="SUBMIT" value="Add"/>		
+	</form>
+	<h3>Dostępne grupy:</h3>
 	<table>
 		<thead>
 			<tr>
@@ -24,8 +26,7 @@
 			<c:forEach items="${groupsAll}" var="groupx">
 				<tr>
 					<td>${groupx.id}</td>
-					<td>${groupx.name}</td>
-					<td><a href="groupusers?groupId=${groupx.id}">Uczestnicy</a>					
+					<td>${groupx.name}</td>					
 				</tr>
 			</c:forEach>
 		</tbody>

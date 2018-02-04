@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ExerciseDao;
 import model.GroupDao;
 import model.UserDao;
 
@@ -24,6 +25,9 @@ public class AdminPanel extends HttpServlet {
 		
 		UserDao uDao  = new UserDao();
 		request.setAttribute("usersAll", uDao.loadAllUsers());
+		
+		ExerciseDao eDao  = new ExerciseDao();
+		request.setAttribute("exerciseAll", eDao.loadAll());
 		
 		getServletContext().getRequestDispatcher("/views/admin1.jsp").forward(request, response);
 	}
